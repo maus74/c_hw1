@@ -37,4 +37,15 @@ script:
     - cmake .. -DCMAKE_BUILD_TYPE=$BUILD_CONFIGURATION -DTARGET_CPU=$TARGET_CPU
     - cmake --build .
     - ctest --output-on-failure
+deploy:
+    # выкладываем tagged-коммиты на GitHub Releases:
+    provider:     releases
+    file:         code
+    skip_cleanup: true
+    overwrite:    true
 
+    api_key:
+        secure:   5c4f04fdfb958044b2f3dfac332831cee65fdbc4
+
+    on:
+        tags:     true
